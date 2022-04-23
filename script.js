@@ -1,6 +1,6 @@
 // Assignment code here
 
-// promptLength function
+// promptLength function -- determines desired length of password
 var promptLength = function() {
   // prompt user to input the desired length of the password (8 - 128)
   var length = parseInt(window.prompt("How many characters should this password have?\n\nPlease enter a number between 8 - 128."));
@@ -15,6 +15,7 @@ var promptLength = function() {
   return length;
 }
 
+// confirmCharacterTypes function -- determines desired character types to be used in password
 var confirmCharacterTypes = function() {
   // ask if the password should contain the corresponding character types
   var confirmLower = window.confirm("Should this password contain LOWERCASE characters?\n(Example -- l o w e r)");
@@ -32,6 +33,7 @@ var confirmCharacterTypes = function() {
   return [confirmLower, confirmUpper, confirmNumeric, confirmSpecial];
 }
 
+// possibleCharacters function -- creates a string of all possible desired characters to be used in password
 var possibleCharacters = function(array) {
   // assign an empty string to characterPool to be added to
   var characterPool = "";
@@ -57,6 +59,7 @@ var possibleCharacters = function(array) {
   return characterPool;
 }
 
+// generatePassword function -- calls all necessary functions to determine password criteria and returns the created password
 var generatePassword = function() {
   // call each function, store the returned value as a variable, and console.log the variable and a message
   var length = promptLength();
@@ -65,7 +68,6 @@ var generatePassword = function() {
   console.log("This password should contain:\nLowercase characters:", characterTypes[0], "\nUppercase characters:", characterTypes[1], "\nNumeric characters:", characterTypes[2], "\nSpecial characters:", characterTypes[3]);
   var characterPool = possibleCharacters(characterTypes);
   console.log("This password should contain a combination of the following characters:", characterPool);
-  
 }
 
 // Get references to the #generate element
