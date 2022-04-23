@@ -32,13 +32,42 @@ var confirmCharacterTypes = function() {
   return [confirmLower, confirmUpper, confirmNumeric, confirmSpecial];
 }
 
+var possibleCharacters = function(array) {
+  // assign an empty string to characterPool to be added to
+  var characterPool = "";
+
+  // if the [n] entry in the array is true add the appropriate characters to characterPool
+  if (array[0]) {
+    characterPool += "abcdefghijklmnopqrstuvwxyz";
+  }
+
+  if (array[1]) {
+    characterPool += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  }
+  
+  if (array[2]) {
+    characterPool += "0123456789";
+  }
+  
+  if (array[3]) {
+    characterPool += "!\"#$%&'()*+,-./:;<=>?@[]\^_`{}|~";
+  }
+
+  // return the created characterPool string
+  return characterPool;
+}
+
 var generatePassword = function() {
   // call each function, store the returned value as a variable, and console.log the variable and a message
   var length = promptLength();
   console.log("This password should contain", length, "characters.");
   var characterTypes = confirmCharacterTypes();
   console.log("This password should contain:\nLowercase characters:", characterTypes[0], "\nUppercase characters:", characterTypes[1], "\nNumeric characters:", characterTypes[2], "\nSpecial characters:", characterTypes[3]);
+  var characterPool = possibleCharacters(characterTypes);
+  console.log("This password should contain a combination of the following characters:", characterPool);
+  
 }
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -48,7 +77,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
