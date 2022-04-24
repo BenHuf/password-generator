@@ -33,7 +33,7 @@ var promptLength = function() {
   }
 
   // create variable for length confirmation
-  var confirmLength = window.confirm("Your password will contain " + userEntry + " characters.\n\nIs this okay?");
+  var confirmLength = window.confirm("Your password will contain " + userEntry + " characters.\n\nIs this okay?\n\nChoose 'Cancel' for NO or 'OK' for YES");
   if (!confirmLength) {
     window.alert("Then why did you enter that number?\n\nLet's try this again.");
     return promptLength();
@@ -46,10 +46,10 @@ var promptLength = function() {
 // confirmCharacterTypes function -- determines desired character types to be used in password
 var confirmCharacterTypes = function() {
   // ask if the password should contain the corresponding character types
-  var confirmLower = window.confirm("Should this password contain LOWERCASE characters?\n\nExample:  l o w e r");
-  var confirmUpper = window.confirm("Should this password contain UPPERCASE characters?\n\nExample:  U P P E R");
-  var confirmNumeric = window.confirm("Should this password contain NUMERIC characters?\n\nExample:  1 2 3 4 5");
-  var confirmSpecial = window.confirm("Should this password contain SPECIAL characters?\n\nExample:  ! @ # $ %");
+  var confirmLower = window.confirm("Should this password contain LOWERCASE characters?\n\nExample:  l o w e r\n\nChoose 'Cancel' for NO or 'OK' for YES");
+  var confirmUpper = window.confirm("Should this password contain UPPERCASE characters?\n\nExample:  U P P E R\n\nChoose 'Cancel' for NO or 'OK' for YES");
+  var confirmNumeric = window.confirm("Should this password contain NUMERIC characters?\n\nExample:  1 2 3 4 5\n\nChoose 'Cancel' for NO or 'OK' for YES");
+  var confirmSpecial = window.confirm("Should this password contain SPECIAL characters?\n\nExample:  ! @ # $ %\n\nChoose 'Cancel' for NO or 'OK' for YES");
   
   // if all 4 values are false notify user at least one character type must be used and run through prompts again
   if (!confirmLower && !confirmUpper && !confirmNumeric && !confirmSpecial) {
@@ -75,7 +75,7 @@ var confirmCharacterTypes = function() {
   passwordCriteria += "\n\nIs this ok?";
   
   // confirm user's choices 
-  var confirmCriteria = window.confirm(passwordCriteria);
+  var confirmCriteria = window.confirm(passwordCriteria + "\n\nChoose 'Cancel' for NO or 'OK' for YES");
   // if user is not satisfied with their choices go through the options again
   if (!confirmCriteria) {
     window.alert("Then why did... \n\nPlease answer the prompts correctly to ensure your password has ONLY character types that you specify.");
