@@ -49,8 +49,33 @@ var confirmCharacterTypes = function() {
     window.alert("Your password must have at least one of these types of characters.\nPlease select at least one of the 4 character types.");
     return confirmCharacterTypes();
   }
+
+  // create string variable to be added to
+  var passwordCriteria = "Your password will be generated from the following chracter types: ";
+  // adds character types to the string if the corresponding variable is true
+  if (confirmLower) {
+    passwordCriteria += "Lowercase. ";
+  }
+  if (confirmUpper) {
+    passwordCriteria += "Uppercase. ";
+  }
+  if (confirmNumeric) {
+    passwordCriteria += "Numeric. ";
+  }
+  if (confirmSpecial) {
+    passwordCriteria += "Special. ";
+  }
+  passwordCriteria += "\nIs this ok?";
   
-  // if at least one value is true return the results as an array
+  // confirm user's choices 
+  var confirmCriteria = window.confirm(passwordCriteria, "Is this okay?");
+  // if user is not satisfied with their choices go through the options again
+  if (!confirmCriteria) {
+    window.alert("Please answer the following prompts to ensure your password has only characters types that you specify.");
+    return confirmCharacterTypes();
+  }
+
+  // if at least one value is true and the user is satisfied with their choices return the following values as an array
   return [confirmLower, confirmUpper, confirmNumeric, confirmSpecial];
 }
 
