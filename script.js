@@ -62,12 +62,26 @@ var possibleCharacters = function(array) {
 // generatePassword function -- calls all necessary functions to determine password criteria and returns the created password
 var generatePassword = function() {
   // call each function, store the returned value as a variable, and console.log the variable and a message
-  var length = promptLength();
-  console.log("This password should contain", length, "characters.");
+  var passwordLength = promptLength();
+  console.log("This password should contain", passwordLength, "characters.");
   var characterTypes = confirmCharacterTypes();
   console.log("This password should contain:\nLowercase characters:", characterTypes[0], "\nUppercase characters:", characterTypes[1], "\nNumeric characters:", characterTypes[2], "\nSpecial characters:", characterTypes[3]);
   var characterPool = possibleCharacters(characterTypes);
   console.log("This password should contain a combination of the following characters:", characterPool);
+
+  // create an array of characters contained in characterPool and stores it as a variable
+  var characterArray = characterPool.split("");
+  // defines password as an empty string to be added to
+  var password = "";
+
+  // creates password by adding one random character each loop. Determines random character by selecting a random index in characterArray. Loops until the password is at the desired length.
+  for (var i = 0; i < passwordLength; i++) {
+    var randomCharacter = characterArray[Math.floor(Math.random() * characterArray.length)];
+    password += randomCharacter;
+  }
+
+  console.log("Your password is:", password);
+  return password;
 }
 
 // Get references to the #generate element
