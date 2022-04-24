@@ -2,12 +2,33 @@
 
 // promptLength function -- determines desired length of password
 var promptLength = function() {
-  // prompt user to input the desired length of the password (8 - 128)
-  var length = parseInt(window.prompt("How many characters should this password have?\n\nPlease enter a number between 8 - 128."));
-  
+  // prompt user to input the desired length of the password (8 - 128) parse float and int values from the response
+  var userEntry = window.prompt("How many characters should this password have?\n\nPlease enter a whole number between 8 - 128.");
+  var floatLength = parseFloat(userEntry)
+  var length = parseInt(userEntry);
+ 
+  // define function to determine if a number is not a whole number (weird edge case with entering an empty string and logging this variable caused me to add the (!x) expression)
+  var isFloat = function(x) {
+    if (!x) {
+      return false;
+    }
+    else {
+      return x % 1 !==0;
+    }
+  }
+
+  var floatCheck = isFloat(floatLength);
+  console.log("floatcheck:", floatCheck);
+
   // if the input is invalid alert the user and run the prompt again
-  if (!length || length < 8 || length > 128) {
+  if (!length || length < 8 || floatLength > 128) {
     window.alert("Please enter a number between 8 - 128.");
+    return promptLength();
+  }
+
+  // if the input is not a whole number alert the user and run the prompt again
+  else if (floatCheck) {
+    window.alert("Please enter a WHOLE number.");
     return promptLength();
   }
 
@@ -79,7 +100,8 @@ var generatePassword = function() {
     var randomCharacter = characterArray[Math.floor(Math.random() * characterArray.length)];
     password += randomCharacter;
   }
-
+  
+  // log and return the created password
   console.log("Your password is:", password);
   return password;
 }
