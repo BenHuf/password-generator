@@ -134,6 +134,7 @@ var generatePassword = function() {
   }
   
   // log and return the created password
+  window.alert("Finally!\n\nHere is your password!");
   console.log("Your password is:", password);
   return password;
 }
