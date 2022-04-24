@@ -58,7 +58,7 @@ var confirmCharacterTypes = function() {
   }
 
   // create string variable to be added to
-  var passwordCriteria = "Your password will be generated from the following chracter types:\n";
+  var passwordCriteria = "Your password will be generated from the following character types:\n";
   // adds character types to the string if the corresponding variable is true
   if (confirmLower) {
     passwordCriteria += "\nLowercase characters (l o w e r)";
