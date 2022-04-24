@@ -32,6 +32,13 @@ var promptLength = function() {
     return promptLength();
   }
 
+  // create variable for length confirmation
+  var confirmLength = window.confirm("Your password will contain " + userEntry + " characters.\n\nIs this okay?");
+  if (!confirmLength) {
+    window.alert("Then why did you enter that number?\n\nLet's try this again.");
+    return promptLength();
+  }
+
   // if the input is valid return the desired password length
   return length;
 }
@@ -39,39 +46,39 @@ var promptLength = function() {
 // confirmCharacterTypes function -- determines desired character types to be used in password
 var confirmCharacterTypes = function() {
   // ask if the password should contain the corresponding character types
-  var confirmLower = window.confirm("Should this password contain LOWERCASE characters?\n(Example -- l o w e r)");
-  var confirmUpper = window.confirm("Should this password contain UPPERCASE characters?\n(Example -- U P P E R)");
-  var confirmNumeric = window.confirm("Should this password contain NUMERIC characters?\n(Example -- 1 2 3 4 5)");
-  var confirmSpecial = window.confirm("Should this password contain SPECIAL characters?\n(Example -- ! @ # $ %)");
+  var confirmLower = window.confirm("Should this password contain LOWERCASE characters?\n\nExample:  l o w e r");
+  var confirmUpper = window.confirm("Should this password contain UPPERCASE characters?\n\nExample:  U P P E R");
+  var confirmNumeric = window.confirm("Should this password contain NUMERIC characters?\n\nExample:  1 2 3 4 5");
+  var confirmSpecial = window.confirm("Should this password contain SPECIAL characters?\n\nExample:  ! @ # $ %");
   
   // if all 4 values are false notify user at least one character type must be used and run through prompts again
   if (!confirmLower && !confirmUpper && !confirmNumeric && !confirmSpecial) {
-    window.alert("Your password must have at least one of these types of characters.\nPlease select at least one of the 4 character types.");
+    window.alert("So you want your password to be blank?\n\nBrilliant..\n\nYour password must have at least one of these types of characters.\nPlease select at least one of the 4 character types.");
     return confirmCharacterTypes();
   }
 
   // create string variable to be added to
-  var passwordCriteria = "Your password will be generated from the following chracter types: ";
+  var passwordCriteria = "Your password will be generated from the following chracter types:\n";
   // adds character types to the string if the corresponding variable is true
   if (confirmLower) {
-    passwordCriteria += "Lowercase. ";
+    passwordCriteria += "\nLowercase characters (l o w e r)";
   }
   if (confirmUpper) {
-    passwordCriteria += "Uppercase. ";
+    passwordCriteria += "\nUppercase characters (U P P E R)";
   }
   if (confirmNumeric) {
-    passwordCriteria += "Numeric. ";
+    passwordCriteria += "\nNumeric characters (1 2 3 4 5)";
   }
   if (confirmSpecial) {
-    passwordCriteria += "Special. ";
+    passwordCriteria += "\nSpecial characters (! @ # $ %)";
   }
-  passwordCriteria += "\nIs this ok?";
+  passwordCriteria += "\n\nIs this ok?";
   
   // confirm user's choices 
-  var confirmCriteria = window.confirm(passwordCriteria, "Is this okay?");
+  var confirmCriteria = window.confirm(passwordCriteria);
   // if user is not satisfied with their choices go through the options again
   if (!confirmCriteria) {
-    window.alert("Please answer the following prompts to ensure your password has only characters types that you specify.");
+    window.alert("Then why did... \n\nPlease answer the prompts correctly to ensure your password has ONLY character types that you specify.");
     return confirmCharacterTypes();
   }
 
